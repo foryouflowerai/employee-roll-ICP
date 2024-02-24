@@ -303,11 +303,14 @@ export default Canister({
         });
       }
       const date = new Date();
+      // Calculate the month and year correctly
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Adjust month value to start from 1 and pad with zero if single digit
+      const year = date.getFullYear().toString();
       // Create a payroll record with a unique id generated using UUID v4
       const payroll = {
         id: uuidv4(),
-        month: date.getFullYear().toString(),
-        year: date.getMonth().toString(),
+        month,
+        year,
         date: date.toISOString(),
         netSalary: payload.basicSalary + payload.allowances,
         ...payload,
